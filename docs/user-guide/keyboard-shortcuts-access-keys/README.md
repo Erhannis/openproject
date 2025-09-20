@@ -25,6 +25,7 @@ OpenProject (since version 3.0) offers useful keyboard shortcuts to  enhance you
 - Go to: Calendar: g c
 - Go to: News: g n
 - Go to: Timelines: g t
+- New: Project: n p
 - New: Work Package: n w p
 - Go to: Edit (only on certain detail pages): g e
 - Open ‘More’ Menu (only on certain detail pages): m

@@ -42,6 +42,7 @@ const accessKeys = {
   help: 6,
   moreMenu: 7,
   details: 8,
+  newProject: 9,
 };
 
 // this could be extracted into a separate component if it grows
@@ -56,6 +57,7 @@ export class KeyboardShortcutService {
     /* eslint-disable quote-props */
     '?': () => this.showHelpModal(),
     'g m': this.globalAction('myPagePath'),
+    'n p': this.globalAction('projectsNewPath', `?parent_id=${this.currentProject.id || ''}`), //RAINY Sorta hacky
     'g o': this.projectScoped('projectPath'),
     'g w p': this.projectScoped('workPackagesPath'),
     'g w i': this.projectScoped('projectWikiPath'),
@@ -93,7 +95,7 @@ export class KeyboardShortcutService {
     });
   }
 
-  public accessKey(keyName:'preview'|'newWorkPackage'|'edit'|'quickSearch'|'projectSearch'|'help'|'moreMenu'|'details'):() => void {
+  public accessKey(keyName:'preview'|'newWorkPackage'|'edit'|'quickSearch'|'projectSearch'|'help'|'moreMenu'|'details'|'newProject'):() => void {
     const key = accessKeys[keyName];
 
     return () => {
@@ -110,9 +112,9 @@ export class KeyboardShortcutService {
     };
   }
 
-  public globalAction(action:keyof PathHelperService) {
+  public globalAction(action:keyof PathHelperService, suffix:string = "") {
     return ():void => {
-      window.location.href = (this.PathHelper[action] as () => string)();
+      window.location.href = (this.PathHelper[action] as () => string)()+suffix;
     };
   }
 
