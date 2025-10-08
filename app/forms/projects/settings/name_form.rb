@@ -30,8 +30,14 @@
 module Projects
   module Settings
     class NameForm < ApplicationForm
+      # ChatGPT
+      def initialize(*args, autofocus: false, **kwargs)
+        super(*args, **kwargs)
+        @autofocus = autofocus
+      end
+
       form do |f|
-        f.text_field name: :name, label: attribute_name(:name), required: true
+        f.text_field name: :name, label: attribute_name(:name), required: true, autofocus: @autofocus
       end
     end
   end
